@@ -1,0 +1,43 @@
+Enabling HSRP
+---------------------
+configure terminal
+interface <interface-id>
+standby [group-number] ip [ip-address [secondary]]
+end
+show standby [interface-id [group]]
+
+
+Example
+-------
+Switch# configure terminal
+Switch(config)# interface gig0/1
+Switch(config-if)# no switchport
+Switch(config-if)# standby 1 ip
+Switch(config-if)# end
+Switch# show standby
+
+
+
+Enabling HSRP priority
+---------------------
+configure terminal
+interface <interface-id>
+standby [group-number] priority <priority> [preempt [delay <delay>]]
+standby [group-number] [priority <priority>] preempt [delay <delay>]
+standby [group-number] track <type number> [interface-priority]
+end
+show running-config
+copy running-config startup-config
+
+
+Example
+-------
+Switch# configure terminal
+Switch(config)# interface gig0/1
+Switch(config-if)# no switchport
+Switch(config-if)# standby ip 172.19.108.254
+Switch(config-if)# standby priority preempt delay 300
+Switch(config-if)# end
+
+
+

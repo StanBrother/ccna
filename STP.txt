@@ -1,0 +1,194 @@
+
+----------------------------------------
+How to Configure Spanning Tree Protocol
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id>
+4. end
+5. show spanning-tree vlan <vlan_id>
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 200
+S1(config)# end
+S1# show spanning-tree vlan 200
+
+
+----------------------------------------
+Configuring the Bridge Priority of a VLAN
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id> priority <bridge_priority>
+4. show spanning-tree vlan bridge
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 200 priority 2
+S1(config)# end
+S1(config-if)# spanning-tree cost 200
+
+
+----------------------------------------
+Configuring STP Timers
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id> hello-time <hello_time>
+4. end
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 200 hello-time 5
+S1(config)# end
+
+
+----------------------------------------
+Configuring the Forward Delay Time for a VLAN
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id> forward-time <forward_time>
+4. end
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 20 forward-time 5
+S1(config)# end
+
+
+----------------------------------------
+Configuring the Maximum Aging Time for a VLAN
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id> max-age <max_age>
+4. end
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 200 max-age 30
+S1(config)# end
+
+
+
+
+----------------------------------------
+Configuring Spanning Tree Port Priority
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. interface <interface>
+4. spanning-tree port-priority <port_priority>
+5. spanning-tree vlan <vlan_id> port-priority <port_priority>
+6. end
+7. show spanning-tree interface fastethernet <interface_id>
+
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# interface fastethernet 0/1/6
+S1(config)# spanning-tree port-priority 8
+S1(config)# spanning-tree vlan vlan1 port-priority 12
+S1(config)# end
+S1# show spanning-tree interface fastethernet 0/1/6
+
+
+
+----------------------------------------
+Configuring Spanning Tree Post Cost
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. interface <type> <number>
+4. spanning-tree cost <port-cost>
+5. spanning-tree vlan <vlan_id> cost <port_cost>
+6. end
+7. show spanning-tree interface fastethernet <interface_id>
+
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# interface fastethernet 0/1/6
+S1(config-if)# spanning-tree cost 2000
+S1(config-if)# spanning-tree vlan 200 cost 200
+S1(config)# end
+S1# show spanning-tree interface fastethernet 0/1/6
+
+
+----------------------------------------
+Configuring Spanning Tree Root Bridge
+----------------------------------------
+
+Summary steps:
+1. enable
+2. configure terminal
+3. spanning-tree vlan <vlan_id> root primary [diameter <hops> [hello-time <seconds>]]
+4. no spanning-tree vlan <vlan_id>
+5. show spanning-tree vlan <vlan_id>
+
+
+Example
+-------------
+S1> enable
+S1# configure terminal
+S1(config)# spanning-tree vlan 200 root primary
+S1(config)# no spanning-tree vlan 200 root primary
+S1(config)# show spanning-tree vlan 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+----------------------------------------
+კონფიგურაციის წესები და მოკლე შესავალი
+----------------------------------------
+
+- რადგანაც STP ბლოკავს შემოვლით გზებს, რათა loop-free გარემო შექმნას,
+ამის გამო ვერ გამოვიყენებთ ერთად რამდენიმე ხაზს
+- ამის ასაცილებლად არსებობს Ethernetchannel, რომელიც 2 ხაზს, როგორც
+ერთს აღიქვამს და ამით შესაძლებელი ხდება 2 ან მეტი ხაზის გამოყენება
+სისწრაფის გასაზრდელად
+
+- იმისათვის, რომ დავაკონფიგურიროთ EthernetChannel, channel-group, რომელშიც
+ვაქცევთ კაბელებს, უნდა იყოს ერთნაირები. მაგალითად, უნდა იყოს ორივე, ან სამივე
+FastEthernet კაბელი. არ შეიძლება იყოს ერთი FastEthernet და მეორე GigabitEthernet
+- არსებობს PGaP და LACP.
+ - channel-group <number> mode active - არის LACP
+ - channel-group <number> mode desiareble - არის PGAp
+ 
+ - გაერთიანებულ ხაზებს ერთად ქვია port-channel
+ - port-channel <number> არის ინტერფეისი, რომელზეც უნდა შევიდეთ და
+ დავწეროთ switchport mode trunk
+ 
+
+----------------------------------------
+LACP configuration example
+----------------------------------------
+Step 1: Speficy range of interfaces using "interface range <interface>" command
+Step 2: Create port channel interface using "channel-group <number (1-6)> mode active" (არსეობს mode desirable, active, passive...)
+Step 3: Change layer 2 settings on port channel interface. Using "interface port-channel <number>" command and
+change switchport to "trunk"
+
+
+Example
+-------------
+S1(config)# interface range fa 0/1-2
+S1(config-if-range)# channel-group 1 mode active
+S1(config-if-range)# exit
+S1(config-if)# interface port-channel 1
+S1(config-if)# switchport mode trunk
+S1(config-if)# switchport trunk allowed vlan 1,2,20
+
+
+
+----------------------------------------
+Verify and Troubleshoot ethernetchannel
+----------------------------------------
+show interfaces port-channel
+show ethernetchannel summary
+show interfaces ethernetchannel
+
+
+
+
+
+
+
+
+
