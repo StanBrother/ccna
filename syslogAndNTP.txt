@@ -1,0 +1,36 @@
+SYSLOG სერვისი:
+SYSLOG სერვისის დასაყენებლად, შემოგვაქვს სერვერი
+და ვრთავთ სერვისს SYSLOG
+
+
+როუტერის კონფიგურაცია, რათა გამოიყენოს syslog სერვისი:
+R1(config)# logging 10.0.1.254
+S1(config)# logging 10.0.1.254
+S2(config)# logging 10.0.1.254
+
+
+საათების ხელით დაყენება სვიჩებზე
+S1# clock set 16:00:00 Apr 6 2018
+S2# clock set 16:00:00 Apr 6 2018
+
+Logging timestamp სერვისის ჩართვა სვიჩებზე
+S1(config)# service timestamps log datetime msec
+S2(config)# service timestamps log datetime msec
+
+
+
+NTP სერვისის კონფიგურაცია:
+NTP სერვისის დასაყენებლად, შემოგვაქვს სერვერი
+და ვრთავთ სერვისს NTP
+
+
+საათის ავტომატური დაყენება როუტერზე:
+	(ვაკავშირებთ როუტერს სერვერის NTP სერვისთან)
+R1(config)# ntp server 64.103.224.2
+
+
+Logging timestamp სერვისი როუტერზე
+R1(config)# service timestamps log datetime msec
+
+
+
